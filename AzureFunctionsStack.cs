@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.Azure.WebJobs;
+using Microsoft.Azure.WebJobs.Extensions.DurableTask;
+using Microsoft.Extensions.Logging;
 using Pulumi.Azure.Core;
 using Pulumi.AzureFunctions.Sdk;
 using System.Threading.Tasks;
@@ -27,10 +29,12 @@ namespace Pulumi.AzureFunctions
                 Functions = new CallbackFunction[]
                 {
                     // TODO: find ways to
-                    // - not require explicit generic type definitions 
+                    // - not require explicit generic type definitions. https://github.com/dotnet/csharplang/issues/129
                     // - allow to use lambda functions (this will need a non-attribute driven way of configuring inputs)
-                    CallbackFunction.From<HttpRequest, IAsyncCollector<Counter>, Counter, Task<string>>(Api.Count),
-                    CallbackFunction.From<HttpRequest, Task<string>>(Api.Hello)
+                    CallbackFunction.From<HttpRequest, IAsyncCollector<CounterTableEntity>, CounterTableEntity, Task<string>>(Api.Count),
+                    CallbackFunction.From<HttpRequest, Task<string>>(Api.Hello),
+                    CallbackFunction.From<HttpRequest, IDurableEntityClient, ILogger, Task<string>>(Api.CountUsingDurableEntity),
+                    CallbackFunction.From<IDurableEntityContext, ILogger, Task>(CounterDurableEntity.Run)
                 },
                 AppSettings = new InputMap<string>
                 {
