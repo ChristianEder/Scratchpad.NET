@@ -1,7 +1,8 @@
-﻿using Pulumi.Azure.AppService.Inputs;
+﻿using Pulumi;
+using Pulumi.Azure.AppService.Inputs;
 using Pulumi.Azure.Storage;
 
-namespace Pulumi.AzureFunctions.Sdk
+namespace Scratchpad.NET.Azure.Functions
 {
     public class CallbackFunctionAppArgs : ResourceArgs
     {

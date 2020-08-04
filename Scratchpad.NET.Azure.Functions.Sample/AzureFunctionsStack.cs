@@ -1,7 +1,8 @@
-﻿using Pulumi.Azure.Core;
-using Pulumi.AzureFunctions.Sdk;
+﻿using Pulumi;
+using Pulumi.Azure.AppInsights;
+using Pulumi.Azure.Core;
 
-namespace Pulumi.AzureFunctions
+namespace Scratchpad.NET.Azure.Functions.Sample
 {
     public class AzureFunctionsStack : Stack
     {
@@ -12,7 +13,7 @@ namespace Pulumi.AzureFunctions
                 Location = "WestEurope"
             });
 
-            var insights = new Azure.AppInsights.Insights("ched-funcy", new Azure.AppInsights.InsightsArgs
+            var insights = new Insights("ched-funcy", new InsightsArgs
             {
                 ResourceGroupName = resourceGroup.Name,
                 ApplicationType = "web"

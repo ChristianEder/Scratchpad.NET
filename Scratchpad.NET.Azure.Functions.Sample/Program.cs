@@ -1,7 +1,7 @@
-﻿using Pulumi.AzureFunctions.Sdk;
+﻿using Pulumi;
 using System.Threading.Tasks;
 
-namespace Pulumi.AzureFunctions
+namespace Scratchpad.NET.Azure.Functions.Sample
 {
 
     class Program

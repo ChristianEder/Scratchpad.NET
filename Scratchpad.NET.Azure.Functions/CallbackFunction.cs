@@ -2,9 +2,8 @@
 using System;
 using System.Linq;
 using System.Reflection;
-using System.Reflection.Metadata.Ecma335;
 
-namespace Pulumi.AzureFunctions.Sdk
+namespace Scratchpad.NET.Azure.Functions
 {
     public class CallbackFunction
     {

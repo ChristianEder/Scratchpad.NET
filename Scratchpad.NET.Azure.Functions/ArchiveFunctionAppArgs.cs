@@ -1,7 +1,8 @@
-﻿using Pulumi.Azure.AppService.Inputs;
+﻿using Pulumi;
+using Pulumi.Azure.AppService.Inputs;
 using Pulumi.Azure.Storage;
 
-namespace Pulumi.AzureFunctions.Sdk
+namespace Scratchpad.NET.Azure.Functions
 {
     public class ArchiveFunctionAppArgs : ResourceArgs
     {
@@ -29,7 +30,7 @@ namespace Pulumi.AzureFunctions.Sdk
         /// </summary>
         [Input("siteConfig", false, false)]
         public Input<FunctionAppSiteConfigArgs> SiteConfig { get; set; }
-        
+
         /// <summary>
         /// The name of the resource group in which to create the Function App.
         [Input("resourceGroupName", true, false)]
@@ -40,7 +41,7 @@ namespace Pulumi.AzureFunctions.Sdk
         /// </summary>
         [Input("osType", false, false)]
         public Input<string> OsType { get; set; }
-        
+
         /// <summary>
         /// Specifies the name of the Function App. Changing this forces a new resource to
         /// be created.
@@ -59,7 +60,7 @@ namespace Pulumi.AzureFunctions.Sdk
         /// A mapping of tags to assign to the resource.
         /// </summary>
         public InputMap<string> Tags { get; set; }
-        
+
         /// <summary>
         /// An `identity` block as defined below.
         /// </summary>
@@ -85,7 +86,7 @@ namespace Pulumi.AzureFunctions.Sdk
         /// </summary>
         [Input("dailyMemoryTimeQuota", false, false)]
         public Input<int> DailyMemoryTimeQuota { get; set; }
-        
+
         /// <summary>
         /// An `connection_string` block as defined below.
         public InputList<FunctionAppConnectionStringArgs> ConnectionStrings { get; set; }

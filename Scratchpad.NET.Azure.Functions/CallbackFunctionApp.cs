@@ -3,13 +3,14 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Hosting;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Pulumi;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
 
-namespace Pulumi.AzureFunctions.Sdk
+namespace Scratchpad.NET.Azure.Functions
 {
     public class CallbackFunctionApp : ArchiveFunctionApp
     {
@@ -127,7 +128,7 @@ namespace Pulumi.AzureFunctions.Sdk
             foreach (var parameter in callback.GetParameters())
             {
                 var bindingDefinition = BuildBindingDefinition(parameter);
-                if(bindingDefinition != null)
+                if (bindingDefinition != null)
                 {
                     bindings.Add(bindingDefinition);
                 }
@@ -173,7 +174,7 @@ namespace Pulumi.AzureFunctions.Sdk
             foreach (var prop in properties)
             {
                 var value = attribute.GetType().GetProperty(prop).GetValue(attribute);
-                if(value != null)
+                if (value != null)
                 {
                     bindingDefinition[PascalCase(prop)] = JToken.FromObject(value);
                 }

@@ -1,9 +1,10 @@
-﻿using Pulumi.Azure.AppService;
+﻿using Pulumi;
+using Pulumi.Azure.AppService;
 using Pulumi.Azure.AppService.Inputs;
 using Pulumi.Azure.Storage;
 using System.Text.RegularExpressions;
 
-namespace Pulumi.AzureFunctions.Sdk
+namespace Scratchpad.NET.Azure.Functions
 {
 
     public class ArchiveFunctionApp : FunctionApp
@@ -14,7 +15,7 @@ namespace Pulumi.AzureFunctions.Sdk
 
         private static FunctionAppArgs Map(string name, ArchiveFunctionAppArgs args)
         {
-            if(args.AppServicePlanId == null)
+            if (args.AppServicePlanId == null)
             {
                 var plan = new Plan(name, new PlanArgs
                 {
@@ -40,7 +41,7 @@ namespace Pulumi.AzureFunctions.Sdk
                 });
             }
 
-            if(args.StorageContainer == null)
+            if (args.StorageContainer == null)
             {
                 args.StorageContainer = new Container(MakeSafeStorageContainerName(name), new ContainerArgs
                 {
@@ -76,7 +77,7 @@ namespace Pulumi.AzureFunctions.Sdk
             {
                 StorageAccountName = args.StorageAccount.Apply(a => a.Name),
                 StorageContainerName = args.StorageContainer.Apply(a => a.Name),
-                Source = args.Archive.Apply(a => (AssetOrArchive)a),
+                Source = args.Archive.Apply(a => a),
                 Type = "Block"
             });
 
@@ -105,7 +106,7 @@ namespace Pulumi.AzureFunctions.Sdk
 
         private static string TrimLength(string name, int length)
         {
-            if(name.Length < length)
+            if (name.Length < length)
             {
                 return name;
             }
@@ -131,7 +132,7 @@ namespace Pulumi.AzureFunctions.Sdk
                     ContainerName = containerName,
                     Start = "2020-07-20",
                     Expiry = signatureExpiration,
-                    Permissions = new Azure.Storage.Inputs.GetAccountBlobContainerSASPermissionsArgs
+                    Permissions = new Pulumi.Azure.Storage.Inputs.GetAccountBlobContainerSASPermissionsArgs
                     {
                         Read = true,
                         Write = false,

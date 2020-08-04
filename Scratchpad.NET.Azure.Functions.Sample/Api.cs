@@ -6,7 +6,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 
-namespace Pulumi.AzureFunctions
+namespace Scratchpad.NET.Azure.Functions.Sample
 {
     public static class Api
     {
@@ -70,11 +70,11 @@ namespace Pulumi.AzureFunctions
         [JsonProperty("value")]
         public int CurrentValue { get; set; }
 
-        public void Inc() => this.CurrentValue += 1;
+        public void Inc() => CurrentValue += 1;
 
-        public void Reset() => this.CurrentValue = 0;
+        public void Reset() => CurrentValue = 0;
 
-        public int Get() => this.CurrentValue;
+        public int Get() => CurrentValue;
 
         [FunctionName(nameof(CounterDurableEntity))]
         public static Task Run([EntityTrigger] IDurableEntityContext ctx, ILogger logger)
