@@ -25,4 +25,4 @@ jobs:
     - name: Pack
       run: dotnet pack ./Scratchpad.NET.Azure.Functions/ -c Release
     - name: Push
-      run: dotnet nuget push .\Scratchpad.NET.Azure.Functions\bin\Release\*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
+      run: dotnet nuget push ./Scratchpad.NET.Azure.Functions/bin/Release/*.nupkg -k ${{secrets.NUGET_API_KEY}} -s https://api.nuget.org/v3/index.json
