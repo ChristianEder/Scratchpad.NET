@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using Pulumi.AzureFunctions.Sdk;
+using System.Threading.Tasks;
 
 namespace Pulumi.AzureFunctions
 {
